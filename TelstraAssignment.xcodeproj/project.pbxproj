@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07CB7E0D84AFFFFFADE2A117 /* Pods_TelstraAssignment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A40A2FBC96FC5C89D1DD3E4A /* Pods_TelstraAssignment.framework */; };
 		D312FDEE205F9CAB005CB46D /* ResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D312FDED205F9CAB005CB46D /* ResponseParser.swift */; };
 		D312FDF0205F9DF6005CB46D /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D312FDEF205F9DF6005CB46D /* DataManager.swift */; };
+		D312FDF3205FB481005CB46D /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D312FDF2205FB481005CB46D /* NetworkManager.swift */; };
+		D312FDF7205FBC58005CB46D /* UIAlertViewController+Show.swift in Sources */ = {isa = PBXBuildFile; fileRef = D312FDF6205FBC58005CB46D /* UIAlertViewController+Show.swift */; };
 		D345BFA8205F9A9D0052F25D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D345BFA7205F9A9D0052F25D /* Constants.swift */; };
 		D345BFAA205F9AA70052F25D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D345BFA9205F9AA70052F25D /* ViewController.swift */; };
 		D345BFAC205F9AE90052F25D /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = D345BFAB205F9AE90052F25D /* Images.swift */; };
@@ -37,9 +40,27 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		D312FDFE205FD550005CB46D /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		099A545624D1C451AF9A040F /* Pods-TelstraAssignment.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TelstraAssignment.release.xcconfig"; path = "Pods/Target Support Files/Pods-TelstraAssignment/Pods-TelstraAssignment.release.xcconfig"; sourceTree = "<group>"; };
+		5E2113E01756B847D27CC71F /* Pods-TelstraAssignment.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TelstraAssignment.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TelstraAssignment/Pods-TelstraAssignment.debug.xcconfig"; sourceTree = "<group>"; };
+		A40A2FBC96FC5C89D1DD3E4A /* Pods_TelstraAssignment.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TelstraAssignment.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D312FDED205F9CAB005CB46D /* ResponseParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResponseParser.swift; path = Model/ResponseParser.swift; sourceTree = "<group>"; };
 		D312FDEF205F9DF6005CB46D /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataManager.swift; path = Model/DataManager.swift; sourceTree = "<group>"; };
+		D312FDF2205FB481005CB46D /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkManager.swift; path = Networking/NetworkManager.swift; sourceTree = "<group>"; };
+		D312FDF6205FBC58005CB46D /* UIAlertViewController+Show.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIAlertViewController+Show.swift"; path = "Utils/UIAlertViewController+Show.swift"; sourceTree = "<group>"; };
 		D345BFA7205F9A9D0052F25D /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Utils/Constants.swift; sourceTree = "<group>"; };
 		D345BFA9205F9AA70052F25D /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = Controllers/ViewController.swift; sourceTree = "<group>"; };
 		D345BFAB205F9AE90052F25D /* Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Images.swift; path = Model/Images.swift; sourceTree = "<group>"; };
@@ -62,6 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07CB7E0D84AFFFFFADE2A117 /* Pods_TelstraAssignment.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,9 +104,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		17579A931096E2F9596050C3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A40A2FBC96FC5C89D1DD3E4A /* Pods_TelstraAssignment.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		529FC5E2EA3D038D97D43698 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5E2113E01756B847D27CC71F /* Pods-TelstraAssignment.debug.xcconfig */,
+				099A545624D1C451AF9A040F /* Pods-TelstraAssignment.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		D312FDF1205FB432005CB46D /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				D312FDF2205FB481005CB46D /* NetworkManager.swift */,
+			);
+			name = Networking;
+			sourceTree = "<group>";
+		};
 		D345BFA2205F990C0052F25D /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				D312FDF6205FBC58005CB46D /* UIAlertViewController+Show.swift */,
 				D345BFA7205F9A9D0052F25D /* Constants.swift */,
 			);
 			name = Utils;
@@ -115,6 +163,8 @@
 				D3C5ABD2205F870B001935E5 /* TelstraAssignmentTests */,
 				D3C5ABDD205F870B001935E5 /* TelstraAssignmentUITests */,
 				D3C5ABBC205F870B001935E5 /* Products */,
+				529FC5E2EA3D038D97D43698 /* Pods */,
+				17579A931096E2F9596050C3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -132,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				D345BFA6205F99B40052F25D /* Model */,
+				D312FDF1205FB432005CB46D /* Networking */,
 				D345BFA2205F990C0052F25D /* Utils */,
 				D345BFA3205F99260052F25D /* Controllers */,
 				D3C5ABEC205F87A3001935E5 /* Supporting Files */,
@@ -176,9 +227,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D3C5ABE3205F870B001935E5 /* Build configuration list for PBXNativeTarget "TelstraAssignment" */;
 			buildPhases = (
+				A5C43F0448A891484AF0D03B /* [CP] Check Pods Manifest.lock */,
 				D3C5ABB7205F870B001935E5 /* Sources */,
 				D3C5ABB8205F870B001935E5 /* Frameworks */,
 				D3C5ABB9205F870B001935E5 /* Resources */,
+				7C7D4C7F05DAFBBE5C4F81EF /* [CP] Embed Pods Frameworks */,
+				82CC51E9C0C6D1FD66E415F6 /* [CP] Copy Pods Resources */,
+				D312FDFE205FD550005CB46D /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -299,14 +354,70 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		7C7D4C7F05DAFBBE5C4F81EF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-TelstraAssignment/Pods-TelstraAssignment-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GZIP/GZIP.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GZIP.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TelstraAssignment/Pods-TelstraAssignment-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		82CC51E9C0C6D1FD66E415F6 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TelstraAssignment/Pods-TelstraAssignment-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A5C43F0448A891484AF0D03B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TelstraAssignment-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D3C5ABB7205F870B001935E5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D312FDF7205FBC58005CB46D /* UIAlertViewController+Show.swift in Sources */,
 				D312FDEE205F9CAB005CB46D /* ResponseParser.swift in Sources */,
 				D312FDF0205F9DF6005CB46D /* DataManager.swift in Sources */,
 				D345BFAA205F9AA70052F25D /* ViewController.swift in Sources */,
+				D312FDF3205FB481005CB46D /* NetworkManager.swift in Sources */,
 				D345BFAC205F9AE90052F25D /* Images.swift in Sources */,
 				D3C5ABBF205F870B001935E5 /* AppDelegate.swift in Sources */,
 				D345BFA8205F9A9D0052F25D /* Constants.swift in Sources */,
@@ -459,6 +570,7 @@
 		};
 		D3C5ABE4205F870B001935E5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5E2113E01756B847D27CC71F /* Pods-TelstraAssignment.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 2JZ5N6RFEM;
@@ -472,6 +584,7 @@
 		};
 		D3C5ABE5205F870B001935E5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 099A545624D1C451AF9A040F /* Pods-TelstraAssignment.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 2JZ5N6RFEM;

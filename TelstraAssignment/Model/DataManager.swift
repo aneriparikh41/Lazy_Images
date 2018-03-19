@@ -12,6 +12,6 @@ class DataManager {
     //MARK:- Properties
     static let sharedInstance = DataManager()
 
-    var images : [Images]
-
-}
+    var images : [Images] = []
+    
+   }

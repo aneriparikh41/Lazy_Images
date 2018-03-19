@@ -12,8 +12,8 @@ class ResponseParser {
     
     //MARK:- Images
     
-    class func imagesFromJSON(_ json:JSON) -> [Images] {
-        let imagesJson = json["rows"]
+    class func imagesFromJSON(_ json: [String: AnyObject]) -> [Images] {
+        if let imagesJson = json["rows"] as? [[String: String]] {
         var images = [Images]()
         for image in imagesJson {
             do {
@@ -25,5 +25,9 @@ class ResponseParser {
             catch {}
         }
         return images
+    } else {
+        return []
+    }
 }
 
+}

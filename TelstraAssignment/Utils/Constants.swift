@@ -19,5 +19,29 @@ struct Constants {
      */
     struct URL {
         fileprivate static let baseURL = "https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json"
+        
+        static var path: Foundation.URL? {
+            if let pathURL = Foundation.URL(string: URL.baseURL) {
+                return pathURL
+            }
+            return nil
+        }
+
     }
+    /**
+     Define your blocks here.
+     */
+    struct Blocks {
+        typealias Error = (String) -> Void
+        typealias Completion = () -> Void
+        typealias NetworkResponseDictionary = ([String: AnyObject]) -> Void
+    }
+    /**
+     Define your messages here.
+     */
+    struct Messages {
+        static let unexpectedError = "Sorry! Unexpected error"
+    }
+    
+
 }

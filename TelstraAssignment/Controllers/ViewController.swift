@@ -12,14 +12,19 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        fetch()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
 
 }
 
+fileprivate extension ViewController {
+    
+    func fetch() {
+        NetworkManager.shared.fetch(completion: { 
+            print("Executed Successfully.\(DataManager.sharedInstance.images.count)")
+        }, error: { message in
+            UIAlertController.show(message: message)
+        })
+
+    }
+}

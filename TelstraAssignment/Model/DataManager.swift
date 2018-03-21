@@ -12,6 +12,7 @@ class DataManager {
     //MARK:- Properties
     static let sharedInstance = DataManager()
 
+    var headerTitle : String = ""
     var images : [Images] = []
     
    }

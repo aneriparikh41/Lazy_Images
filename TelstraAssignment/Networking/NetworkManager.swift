@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import GZIP
 
 
 class NetworkManager: NSObject {
@@ -31,8 +30,10 @@ class NetworkManager: NSObject {
             return
         }
         GET(url, completion: { (json) in
-            if let json = json as? [String: AnyObject] {
-                self.images = ResponseParser.imagesFromJSON(json)
+            if let data = json as? [String: Any], let imageData = data["rows"] as? [[String: AnyObject]] {
+                  self.images = ResponseParser.imagesFromJSON(imageData)
+                  DataManager.sharedInstance.images = self.images
+                  completion()
             }
         }, error: error)
     }
@@ -47,18 +48,16 @@ class NetworkManager: NSObject {
      */
     fileprivate func GET(_ url: URL, completion: @escaping (Any) -> Void, error errorBlock: Constants.Blocks.Error?) {
         print(url)
+        var request = URLRequest(url: url)
+        request.setValue("text/plain", forHTTPHeaderField: "Content-Type")  // the request is JSON
         _ = URLSession.shared.dataTask(with: url) { (data, response, error) in
-            if let data = data as? NSData {
+            if let data = data {
                 do{
-                    let decompressedData: Data
-                    if data.isGzippedData() {
-                        decompressedData = try data.gunzipped()!
-                    } else {
-                        decompressedData = data as Data
-                    }
-                    let json = try? JSONSerialization.jsonObject(with: decompressedData, options: [])
-                    if let rootDictionary = json as? [String: Any] {
-                        completion(rootDictionary["rows"])
+                    if let strData = NSString(data: data, encoding: String.Encoding.isoLatin1.rawValue), let finalData = strData.data(using: String.Encoding.utf8.rawValue) {
+                        let json = try? JSONSerialization.jsonObject(with: finalData, options: [])
+                        if let rootDictionary = json {
+                            completion(rootDictionary)
+                        }
                     }
                 } catch {
                     if let errorBlock = errorBlock {
@@ -70,7 +69,7 @@ class NetworkManager: NSObject {
                 completion(error!)
             }
             }.resume()
-
+        
     }
 }
 

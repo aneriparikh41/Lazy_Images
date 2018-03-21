@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "NetworkManager.(fetch(completion : () -&gt; (), error : (String) -&gt; ()) -&gt; ()).(closure #1):NetworkManager.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "(String: AnyObject)json">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

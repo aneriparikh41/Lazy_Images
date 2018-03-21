@@ -15,18 +15,18 @@ class Images
     var description : String = ""
     var imageURL : String = ""
     
-    convenience init(json : [String: String]) throws{
+    convenience init(json : [String: AnyObject]) throws{
         self.init()
       
-        if let title = json["title"] {
+        if let title = json["title"] as? String {
             self.title  = title
         }
         
-        if let description = json["description"] {
+        if let description = json["description"] as? String {
             self.description  = description
         }
         
-        if let imageURL = json["imageHref"] {
+        if let imageURL = json["imageHref"] as? String {
             self.imageURL  = imageURL
         }
     }

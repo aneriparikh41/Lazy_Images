@@ -33,7 +33,6 @@ class NetworkManager: NSObject {
             if let data = json as? [String: Any], let imageData = data["rows"] as? [[String: AnyObject]], let title = data["title"] as? String {
                   self.images = ResponseParser.imagesFromJSON(imageData)
                   DataManager.sharedInstance.images = self.images
-                  DataManager.sharedInstance.headerTitle = title
                   completion()
             }
         }, error: error)

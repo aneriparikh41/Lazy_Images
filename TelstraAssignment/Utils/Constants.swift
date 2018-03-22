@@ -41,6 +41,7 @@ struct Constants {
      */
     struct Messages {
         static let unexpectedError = "Sorry! Unexpected error"
+        static let title = "About Canada"
     }
     
 

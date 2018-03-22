@@ -11,9 +11,13 @@ import Foundation
  */
 class Images
 {
+    //MARK:- Properties
+    
     var title : String = ""
     var description : String = ""
     var imageURL : String = ""
+    
+    //MARK:- Initializers
     
     convenience init(json : [String: AnyObject]) throws{
         self.init()

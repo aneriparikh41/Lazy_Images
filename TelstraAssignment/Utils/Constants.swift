@@ -26,15 +26,19 @@ struct Constants {
             }
             return nil
         }
-
     }
+    
     /**
      Define your blocks here.
      */
     struct Blocks {
         typealias Error = (String) -> Void
-        typealias Completion = () -> Void
+        typealias Completion = (Bool) -> Void
         typealias NetworkResponseDictionary = ([String: AnyObject]) -> Void
+    }
+    
+    struct MagicNumbers {
+        static let rowHeight = 200.0
     }
     /**
      Define your messages here.
@@ -43,6 +47,4 @@ struct Constants {
         static let unexpectedError = "Sorry! Unexpected error"
         static let title = "About Canada"
     }
-    
-
 }

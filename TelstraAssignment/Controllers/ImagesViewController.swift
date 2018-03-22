@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  ImagesViewController.swift
 //  TelstraAssignment
 //
 //  Created by Yash on 19/03/18.
@@ -8,8 +8,9 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ImagesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    //MARK:- Properties
     var tableView: UITableView = UITableView()
     var headerView: UIView = UIView()
     var images = DataManager.sharedInstance.images
@@ -19,14 +20,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var task: URLSessionDownloadTask!
     var session: URLSession!
     
-   
-    
     let activityView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
-
+    let loadingView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+    
+    //MARK:- Life Cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         () = DataManager.sharedInstance.images.count > 0 ? () : fetch()
-        tableView.estimatedRowHeight = 200.0
+        tableView.estimatedRowHeight = CGFloat(Constants.MagicNumbers.rowHeight)
         tableView.rowHeight = UITableViewAutomaticDimension
         
         self.cache = NSCache()
@@ -34,17 +35,20 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         task = URLSessionDownloadTask()
         
         pullToRefresh()
-        }
-
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         drawHeader()
         drawTable()
     }
+    override func viewDidLayoutSubviews() {
+        drawSeperator()
+        drawTable()
+    }
     
-       
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-    {
+    //MARK:- Table View Methods
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if images.count > 0 {
             return images.count
         } else {
@@ -53,7 +57,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
+        
         if let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? ImageTableViewCell {
             design(indexPath: indexPath, cell: cell)
             return cell
@@ -67,20 +71,38 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
 }
 
- extension ViewController {
+extension ImagesViewController {
     
+    //MARK:- Data Methods
     func fetch() {
-        NetworkManager.shared.fetch(completion: { 
-            print("Executed Successfully.\(DataManager.sharedInstance.images.count)")
-            DispatchQueue.main.async(execute: { () -> Void in
-                self.images = DataManager.sharedInstance.images
-                self.tableView.reloadData()
-                self.refreshCtrl?.endRefreshing()
+        loadingView.frame = CGRect(x: self.view.frame.size.width/2 - 30 , y: self.view.frame.size.height/2 - 60, width: 100, height: 100)
+        loadingView.activityIndicatorViewStyle = .gray
+        loadingView.startAnimating()
+        tableView.addSubview(loadingView)
+        
+        if Reachability.isConnectedToNetwork() {
+            NetworkManager.shared.fetch(completion: {_ in
+                print("Executed Successfully.\(DataManager.sharedInstance.images.count)")
+                DispatchQueue.main.async(execute: { () -> Void in
+                    self.loadingView.stopAnimating()
+                    self.images = DataManager.sharedInstance.images
+                    self.tableView.reloadData()
+                    self.refreshCtrl?.endRefreshing()
+                })
+            }, error: { message in
+                DispatchQueue.main.async() {
+                    self.loadingView.stopAnimating()
+                }
+                UIAlertController.show(message: message)
             })
-        }, error: { message in
-            UIAlertController.show(message: message)
-        })
-   }
+        } else {
+            DispatchQueue.main.async() {
+                self.loadingView.stopAnimating()
+            }
+        }
+    }
+    
+    //MARK:- UI Related Methods
     func drawHeader() {
         //Header View
         headerView.frame = CGRect(x: 0, y: 20, width: self.view.frame.size.width, height: 40.0)
@@ -89,7 +111,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         headerlabel.font = UIFont.preferredFont(forTextStyle: .headline)
         headerlabel.frame = CGRect(x: self.headerView.center.x - 50 , y: 10, width: self.headerView.frame.size.width, height: 20.0)
         headerView.addSubview(headerlabel)
-        
+        drawSeperator()
+    }
+    
+    func drawSeperator() {
         //Seperator
         let seperatorView = UIView()
         seperatorView.frame = CGRect(x: 0, y: 39, width: self.view.frame.size.width, height: 1)
@@ -99,30 +124,28 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func drawTable() {
         //Table View
-        let viewsDict = [
-            "table" : tableView
-            ] as [String : Any]
-        tableView.frame = CGRect(x: 0, y: 60, width: self.view.frame.size.width, height: self.view.frame.size.height)
+        
+        tableView.frame = CGRect(x: 0, y: 60, width: self.view.frame.size.width, height: self.view.frame.size.height - 60)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.tableFooterView = UIView()
         
         tableView.register(ImageTableViewCell.self, forCellReuseIdentifier: "Cell")
         
-        
         self.view.addSubview(tableView)
         self.view.addSubview(headerView)
         
-        //  view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-[table]-|", options: [], metrics: nil, views: viewsDict))
-        //  view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-[table]-|", options: [], metrics: nil, views: viewsDict))
-    }
-    func pullToRefresh() {
-        self.refreshCtrl = UIRefreshControl()
-        self.refreshCtrl.addTarget(self, action: #selector(ViewController.fetch), for: .valueChanged)
-        self.tableView.refreshControl = self.refreshCtrl
-
     }
     
+    //MARK:- Pull to refresh
+    func pullToRefresh() {
+        self.refreshCtrl = UIRefreshControl()
+        self.refreshCtrl.addTarget(self, action: #selector(ImagesViewController.fetch), for: .valueChanged)
+        self.tableView.refreshControl = self.refreshCtrl
+        
+    }
+    
+    //MARK:- Design Cell Method
     func design(indexPath: IndexPath, cell: ImageTableViewCell) {
         cell.imageTitle.text = (images[indexPath.row].title == "" ? "No Data Found" : images[indexPath.row].title)
         cell.imageDesc.text = (images[indexPath.row].description == "" ? "No Data Found" : images[indexPath.row].description)
@@ -132,6 +155,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.imageview.addSubview(activityView)
         activityView.startAnimating()
         cell.imageview.image = UIImage(named: "placeholder")
+        cell.selectionStyle = .none
         
         if (cache.object(forKey: (indexPath as NSIndexPath).row as AnyObject) != nil){
             // Use cache
@@ -161,5 +185,4 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             task?.resume()
         }
     }
-
 }

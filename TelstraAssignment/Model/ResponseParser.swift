@@ -10,7 +10,7 @@ import Foundation
 
 class ResponseParser {
     
-    //MARK:- Images
+    //MARK:- Parser Methods
     
     class func imagesFromJSON(_ json: [[String: AnyObject]]) -> [Images] {
         var images = [Images]()

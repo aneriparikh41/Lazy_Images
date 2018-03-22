@@ -10,12 +10,14 @@ import UIKit
 
 class ImageTableViewCell: UITableViewCell {
     
+    //MARK:- Properties
     let imageview = UIImageView()
     let imageTitle = UILabel()
     let imageDesc = UILabel()
     
     let activityView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
     
+    //MARK:- Init
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -28,6 +30,7 @@ class ImageTableViewCell: UITableViewCell {
         super.init(coder: aDecoder)
     }
     
+    //MARK:- Design Methods
     func addFontStyles() {
         imageview.translatesAutoresizingMaskIntoConstraints = false
         imageTitle.translatesAutoresizingMaskIntoConstraints = false
@@ -45,13 +48,13 @@ class ImageTableViewCell: UITableViewCell {
         contentView.addSubview(imageTitle)
         contentView.addSubview(imageDesc)
     }
+    
     func addConstraints() {
         let viewsDict = [
             "image" : imageview,
             "title" : imageTitle,
             "desc" : imageDesc
             ] as [String : Any]
-        
         
         contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-11-[image(150)]-(>=11)-|", options: [], metrics: nil, views: viewsDict))
         contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-11-[title(20)]-[desc]-(>=10)-|", options: [.alignAllLeading], metrics: nil, views: viewsDict))

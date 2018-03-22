@@ -14,6 +14,7 @@ class NetworkManager: NSObject {
     /**
      You obtain the global instance from a singleton class through a factory method.
      */
+    //MARK:- Properties
     static let shared = NetworkManager()
     var images = DataManager.sharedInstance.images
     
@@ -25,17 +26,22 @@ class NetworkManager: NSObject {
      - completion: Handle the fetched list. Output will be a [String : AnyObject]
      - error: Handle errors which may come from API.
      */
+    
+    //MARK:- Network Methods
     func fetch(completion: @escaping Constants.Blocks.Completion, error: @escaping Constants.Blocks.Error) {
         guard let url = Constants.URL.path else {
+            completion(false)
             return
         }
         GET(url, completion: { (json) in
-            if let data = json as? [String: Any], let imageData = data["rows"] as? [[String: AnyObject]], let title = data["title"] as? String {
-                  self.images = ResponseParser.imagesFromJSON(imageData)
-                  DataManager.sharedInstance.images = self.images
-                  completion()
+            if let data = json as? [String: Any], let imageData = data["rows"] as? [[String: AnyObject]] {
+                self.images = ResponseParser.imagesFromJSON(imageData)
+                DataManager.sharedInstance.images = self.images
+                completion(true)
             }
-        }, error: error)
+        }) { (error) in
+            completion(false)
+        }
     }
     
     /**
@@ -59,17 +65,15 @@ class NetworkManager: NSObject {
                             completion(rootDictionary)
                         }
                     }
-                } catch {
-                    if let errorBlock = errorBlock {
-                        errorBlock(Constants.Messages.unexpectedError)
-                    }
-                    completion(error)
                 }
             } else {
-                completion(error!)
-            }
-            }.resume()
-        
+                    if let errorBlock = errorBlock {
+                        errorBlock(Constants.Messages.unexpectedError)
+                        completion(error)
+
+                    }
+                }
+        }.resume()
     }
 }
 

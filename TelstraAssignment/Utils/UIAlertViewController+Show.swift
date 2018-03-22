@@ -24,9 +24,9 @@ extension UIAlertController {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (_) in
             if let completion = completion {
-                completion()
+                completion(true)
             }
         }))
-        ((UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController as? UINavigationController)?.present(alert, animated: true, completion: nil)
+        ((UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController)?.present(alert, animated: true, completion: nil)
     }
 }

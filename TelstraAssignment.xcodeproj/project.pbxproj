@@ -12,8 +12,10 @@
 		D312FDF3205FB481005CB46D /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D312FDF2205FB481005CB46D /* NetworkManager.swift */; };
 		D312FDF7205FBC58005CB46D /* UIAlertViewController+Show.swift in Sources */ = {isa = PBXBuildFile; fileRef = D312FDF6205FBC58005CB46D /* UIAlertViewController+Show.swift */; };
 		D345BFA8205F9A9D0052F25D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D345BFA7205F9A9D0052F25D /* Constants.swift */; };
-		D345BFAA205F9AA70052F25D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D345BFA9205F9AA70052F25D /* ViewController.swift */; };
 		D345BFAC205F9AE90052F25D /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = D345BFAB205F9AE90052F25D /* Images.swift */; };
+		D352A7522063B46000039B2B /* ImagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D345BFA9205F9AA70052F25D /* ImagesViewController.swift */; };
+		D352A75B2063BA5E00039B2B /* NetworkTestCases.swift in Sources */ = {isa = PBXBuildFile; fileRef = D352A75A2063BA5E00039B2B /* NetworkTestCases.swift */; };
+		D352A75D2063D1D700039B2B /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = D352A75C2063D1D700039B2B /* Reachability.swift */; };
 		D371854220625A3900B7D905 /* ImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D371854120625A3900B7D905 /* ImageTableViewCell.swift */; };
 		D3C5ABBF205F870B001935E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C5ABBE205F870B001935E5 /* AppDelegate.swift */; };
 		D3C5ABC4205F870B001935E5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3C5ABC2205F870B001935E5 /* Main.storyboard */; };
@@ -59,8 +61,10 @@
 		D312FDF2205FB481005CB46D /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkManager.swift; path = Networking/NetworkManager.swift; sourceTree = "<group>"; };
 		D312FDF6205FBC58005CB46D /* UIAlertViewController+Show.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIAlertViewController+Show.swift"; path = "Utils/UIAlertViewController+Show.swift"; sourceTree = "<group>"; };
 		D345BFA7205F9A9D0052F25D /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Utils/Constants.swift; sourceTree = "<group>"; };
-		D345BFA9205F9AA70052F25D /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = Controllers/ViewController.swift; sourceTree = "<group>"; };
+		D345BFA9205F9AA70052F25D /* ImagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImagesViewController.swift; path = Controllers/ImagesViewController.swift; sourceTree = "<group>"; };
 		D345BFAB205F9AE90052F25D /* Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Images.swift; path = Model/Images.swift; sourceTree = "<group>"; };
+		D352A75A2063BA5E00039B2B /* NetworkTestCases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkTestCases.swift; sourceTree = "<group>"; };
+		D352A75C2063D1D700039B2B /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Reachability.swift; path = Networking/Reachability.swift; sourceTree = "<group>"; };
 		D371854120625A3900B7D905 /* ImageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageTableViewCell.swift; path = Views/ImageTableViewCell.swift; sourceTree = "<group>"; };
 		D3C5ABBB205F870B001935E5 /* TelstraAssignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TelstraAssignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3C5ABBE205F870B001935E5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -105,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				D312FDF2205FB481005CB46D /* NetworkManager.swift */,
+				D352A75C2063D1D700039B2B /* Reachability.swift */,
 			);
 			name = Networking;
 			sourceTree = "<group>";
@@ -121,7 +126,7 @@
 		D345BFA3205F99260052F25D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				D345BFA9205F9AA70052F25D /* ViewController.swift */,
+				D345BFA9205F9AA70052F25D /* ImagesViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -167,11 +172,11 @@
 		D3C5ABBD205F870B001935E5 /* TelstraAssignment */ = {
 			isa = PBXGroup;
 			children = (
-				D371854020625A0F00B7D905 /* Views */,
 				D345BFA6205F99B40052F25D /* Model */,
+				D371854020625A0F00B7D905 /* Views */,
+				D345BFA3205F99260052F25D /* Controllers */,
 				D312FDF1205FB432005CB46D /* Networking */,
 				D345BFA2205F990C0052F25D /* Utils */,
-				D345BFA3205F99260052F25D /* Controllers */,
 				D3C5ABEC205F87A3001935E5 /* Supporting Files */,
 				D3C5ABCA205F870B001935E5 /* Info.plist */,
 				D3C5ABC5205F870B001935E5 /* Assets.xcassets */,
@@ -183,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				D3C5ABD3205F870B001935E5 /* TelstraAssignmentTests.swift */,
+				D352A75A2063BA5E00039B2B /* NetworkTestCases.swift */,
 				D3C5ABD5205F870B001935E5 /* Info.plist */,
 			);
 			path = TelstraAssignmentTests;
@@ -343,14 +349,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D352A7522063B46000039B2B /* ImagesViewController.swift in Sources */,
 				D312FDF7205FBC58005CB46D /* UIAlertViewController+Show.swift in Sources */,
 				D312FDEE205F9CAB005CB46D /* ResponseParser.swift in Sources */,
 				D312FDF0205F9DF6005CB46D /* DataManager.swift in Sources */,
 				D371854220625A3900B7D905 /* ImageTableViewCell.swift in Sources */,
-				D345BFAA205F9AA70052F25D /* ViewController.swift in Sources */,
 				D312FDF3205FB481005CB46D /* NetworkManager.swift in Sources */,
 				D345BFAC205F9AE90052F25D /* Images.swift in Sources */,
 				D3C5ABBF205F870B001935E5 /* AppDelegate.swift in Sources */,
+				D352A75D2063D1D700039B2B /* Reachability.swift in Sources */,
 				D345BFA8205F9A9D0052F25D /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -359,6 +366,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D352A75B2063BA5E00039B2B /* NetworkTestCases.swift in Sources */,
 				D3C5ABD4205F870B001935E5 /* TelstraAssignmentTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -509,6 +517,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.infosys.TelstraAssignment;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -522,6 +531,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.infosys.TelstraAssignment;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

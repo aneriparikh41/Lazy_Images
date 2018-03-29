@@ -33,15 +33,11 @@ class ImagesViewController: UIViewController, UITableViewDataSource, UITableView
         self.cache = NSCache()
         session = URLSession.shared
         task = URLSessionDownloadTask()
-        
-        pullToRefresh()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         drawHeader()
         drawTable()
+        pullToRefresh()
     }
+   
     override func viewDidLayoutSubviews() {
         drawSeperator()
         drawTable()
@@ -98,6 +94,7 @@ extension ImagesViewController {
         } else {
             DispatchQueue.main.async() {
                 self.loadingView.stopAnimating()
+                 UIAlertController.show(message: "\(Constants.Messages.networkError)")
             }
         }
     }
